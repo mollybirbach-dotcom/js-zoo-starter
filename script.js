@@ -14,6 +14,12 @@
 }
 */
 
+
+function run() {
+  var zoebot = new Zookeeper("Zoebot");
+  zoebot.feedAnimals([Tiger,Bear,Unicorn, Giraffe, Bee], "pasta");
+}
+
 class Animal {
 
   constructor(name, favoriteFood) {
@@ -100,21 +106,17 @@ class Bee extends Animal {
   }
 }
 
-function run() {
-  var tigger = new Tiger("Tigger");
-  tigger.eat("meat");
-  tigger.eat("kibble");
-  var pooh = new Bear("Pooh");
-  pooh.eat("fish");
-  pooh.eat("meat");
-  var rarity = new Unicorn("Rarity");
-  rarity.eat("marshmallows")
-  var gemma = new Giraffe("Gemma");
-  gemma.eat("meat");
-  gemma.eat("leaves");
-  var stinger = new Bee("Stinger");
-  stinger.eat("ice cream");
-  stinger.eat("pollen");
+class Zookeeper {
+  constructor(name){
+    this.name = name; 
+  }
+
+feedAnimals(animals, food){
+console.log( this.name + " is feeding " + food + " to " + animals.length + " animals" );
+for(let i =0; i<animals.length; i++){
+  animals[i].eat(food);
 }
+}
+}
+
 run();
-//saving
