@@ -14,10 +14,25 @@
 }
 */
 
+var animalPopulation = 0;
 
 function run() {
+  var tigger = new Tiger("Tigger");
+  tigger.eat("meat");
+  tigger.eat("kibble");
+  var pooh = new Bear("Pooh");
+  pooh.eat("fish");
+  pooh.eat("meat");
+  var rarity = new Unicorn("Rarity");
+  rarity.eat("marshmallows")
+  var gemma = new Giraffe("Gemma");
+  gemma.eat("meat");
+  gemma.eat("leaves");
+  var stinger = new Bee("Stinger");
+  stinger.eat("ice cream");
+  stinger.eat("pollen");
   var zoebot = new Zookeeper("Zoebot");
-  zoebot.feedAnimals([Tiger,Bear,Unicorn, Giraffe, Bee], "pasta");
+  zoebot.feedAnimals([tigger, pooh, rarity, gemma, stinger], "pasta");
 }
 
 class Animal {
@@ -25,8 +40,11 @@ class Animal {
   constructor(name, favoriteFood) {
     this.name = name;
     this.favoriteFood = favoriteFood;
+      animalPopulation++
   }
-
+static getPopulation(){
+  return animalPopulation;
+}
   sleep() {
     console.log(this.name + " sleeps for 8 hours")
 
@@ -40,6 +58,7 @@ class Animal {
       this.sleep();
     }
   }
+
 }
 
 class Tiger extends Animal {
@@ -52,7 +71,7 @@ class Tiger extends Animal {
 class Bear extends Animal {
 
   constructor(name) {
-    super(name,"fish");
+    super(name, "fish");
   }
 
   sleep() {
@@ -63,7 +82,7 @@ class Bear extends Animal {
 
 class Unicorn extends Animal {
   constructor(name) {
-    super(name,"marshmallows");
+    super(name, "marshmallows");
   }
 
   sleep() {
@@ -74,8 +93,8 @@ class Unicorn extends Animal {
 class Giraffe extends Animal {
 
   constructor(name) {
-    super(name,"leaves");
-    }
+    super(name, "leaves");
+  }
   eat(food) {
     if (food !== this.favoriteFood) {
       console.log("YUCK!!! " + this.name + " will not eat " + food);
@@ -88,7 +107,7 @@ class Giraffe extends Animal {
 
 class Bee extends Animal {
   constructor(name) {
-    super(name,"pollen");
+    super(name, "pollen");
   }
 
   eat(food) {
@@ -107,16 +126,16 @@ class Bee extends Animal {
 }
 
 class Zookeeper {
-  constructor(name){
-    this.name = name; 
+  constructor(name) {
+    this.name = name;
   }
 
-feedAnimals(animals, food){
-console.log( this.name + " is feeding " + food + " to " + animals.length + " animals" );
-for(let i =0; i<animals.length; i++){
-  animals[i].eat(food);
-}
-}
+  feedAnimals(animals, food) {
+    console.log(this.name + " is feeding " + food + " to " + animals.length + " of " + Animal.getPopulation() + " total animals.");
+    for (let i = 0; i < animals.length; i++) {
+      animals[i].eat(food);
+    }
+  }
 }
 
 run();
